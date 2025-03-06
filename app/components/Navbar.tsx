@@ -1,33 +1,24 @@
 "use client";
 
-import Link from "next/link";
-import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { ShoppingCart } from "lucide-react";
+import { useSelector } from "react-redux";
 import Signin from "./Signin";
+import { ShoppingCartIcon } from "lucide-react";
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
-
   return (
-    <nav className="flex items-center justify-between p-4 bg-white shadow-md">
-      <Link href="/">
-        <h1 className="text-2xl font-bold">Rough.</h1>
-      </Link>
-
-      <div className="flex items-center gap-4">
+    <div className="flex max-w-7xl mx-auto justify-between py-4 border-b">
+      <h1 className="text-4xl font-extrabold">rough.</h1>
+      <div className="flex relative items-center">
         <Signin />
-        <Link href="/cart">
-          <div className="relative cursor-pointer">
-            <ShoppingCart className="w-6 h-6" />
-            {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">
-                {cartItems.length}
-              </span>
-            )}
-          </div>
-        </Link>
+        <ShoppingCartIcon />
+        {cartItems.length > 0 && (
+          <span className="absolute -top-0 -right-2 text-xs bg-red-500 rounded-full px-2 py-1 text-white">
+            {cartItems.length}
+          </span>
+        )}
       </div>
-    </nav>
+    </div>
   );
 }
