@@ -21,5 +21,6 @@ export async function GET() {
       image: "/images/cargo-pants.jpg",
     },
   ];
+  console.log("Serving products:", products);
   return NextResponse.json(products);
 }
